@@ -12,7 +12,7 @@ Feature: Don't Merge Articles
 
 
   Scenario: unable to merge articles
-    Given I am on the edit page for "Anna"
+    Given I am on the article page for "Anna"
     Then I should not see "merge"
     And I should see "asdfghjk"
     And I should not see "xcvbn"
