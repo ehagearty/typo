@@ -21,6 +21,25 @@ module NavigationHelpers
       num = Article.find_by_title($1).id
       "/admin/content/edit/#{num}"
 
+    when /^the article page for "(.+)"$/
+      num = Article.find_by_title($1).published_at
+      $1.downcase!
+      title_components = $1.split(/\s+/)
+      title_joined = title_components.join('-')
+      month = num.month.to_s
+      if month.length == 1
+        url_month = "0" + month
+      else 
+        url_month = month
+      end
+      day = num.day.to_s
+      if day.length == 1
+        url_day = "0" + day
+      else
+        url_day = day
+      end
+      "/#{num.year}/#{url_month}/#{url_day}/#{title_joined}"
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
