@@ -1,0 +1,5 @@
+<%= form_tag :action => "merge", :id => @article.id do %>
+<h4>Merge Articles</h4>
+<p> Article ID <%= text_field_tag(:merge_with) %></p>
+<%= save( _("Merge")) %>
+<% end %>
