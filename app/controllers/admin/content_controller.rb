@@ -14,6 +14,7 @@ class Admin::ContentController < Admin::BaseController
     @article.save!
     @mergewith.destroy
     redirect_to :action => 'index'
+    
   end
 
 
