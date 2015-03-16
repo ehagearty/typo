@@ -15,7 +15,7 @@ Feature: Merge Articles
   Scenario: Successfully merge articles
     Given I am on the edit page for "Anna"
     When I fill in "merge_with" with "2"
-    And I press "merge"
+    And I press "Merge"
     Then I should be on article page for "Anna"
     And I should see "asdfghjk"
     And I should see "xcvbn"

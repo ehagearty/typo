@@ -150,8 +150,8 @@
   </div>
   <div class=''>
     <h4><%= _("Merge Articles") %></h4>
-    <p> Article ID <%= text_field 'merge_with', 'id', {:class => 'span4'} %></p>
-    <input id='merge_with' type="merge" value="Merge" name="merge_id" class='btn' />
+    <p> Article ID <%= text_field_tag(:merge_with) %></p>
+    <%= submit_tag "Merge" %>
   </div>
 
 </div>
