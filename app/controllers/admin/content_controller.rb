@@ -12,8 +12,7 @@ class Admin::ContentController < Admin::BaseController
     secondbody = @mergewith.body
     @article.body = "#{firstbody} #{secondbody}"
     @mergewith.comments.each do |comment|
-        comment.article = @article
-        comment.save!
+      @article.comments.create!(:user_id => comment.user_id, :body => comment.body, :author => comment.author)
     end
     @article.save!
     @mergewith.destroy
