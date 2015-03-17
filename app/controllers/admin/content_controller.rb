@@ -11,10 +11,13 @@ class Admin::ContentController < Admin::BaseController
     firstbody = @article.body
     secondbody = @mergewith.body
     @article.body = "#{firstbody} #{secondbody}"
+    @mergewith.comments.each do |comment|
+        comment.article = @article
+        comment.save!
+    end
     @article.save!
     @mergewith.destroy
     redirect_to :action => 'index'
-    
   end
 
 
