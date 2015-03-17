@@ -7,18 +7,19 @@ class Admin::ContentController < Admin::BaseController
   cache_sweeper :blog_sweeper
 
   def merge
-    if current_user.admin?
-      @article, @mergewith = Article.find(params[:id]), Article.find(params[:merge_with])
-      firstbody = @article.body
-      secondbody = @mergewith.body
-      @article.body = "#{firstbody} #{secondbody}"
-      @mergewith.comments.each do |comment|
-        @article.comments.create!(:user_id => comment.user_id, :body => comment.body, :author => comment.author)
-      end
-      @article.save!
-      @mergewith.destroy
+    unless current_user.admin?
       redirect_to :action => 'index'
     end
+    @article, @mergewith = Article.find(params[:id]), Article.find(params[:merge_with])
+    firstbody = @article.body
+    secondbody = @mergewith.body
+    @article.body = "#{firstbody} #{secondbody}"
+    @mergewith.comments.each do |comment|
+      @article.comments.create!(:user_id => comment.user_id, :body => comment.body, :author => comment.author)
+    end
+    @article.save!
+    @mergewith.destroy
+    redirect_to :action => 'index'
   end
 
   def auto_complete_for_article_keywords
