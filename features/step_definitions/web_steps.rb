@@ -55,6 +55,12 @@ And /^I am logged into the admin panel$/ do
   end
 end
 
+Given /^the category "(.*?)" exists$/ do |arg1|
+  visit '/admin/categories/new'
+  fill_in('category_name', :with => arg1)
+  click_button 'Save'
+end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
